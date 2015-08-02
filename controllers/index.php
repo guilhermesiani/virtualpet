@@ -16,6 +16,6 @@ class Index extends \Libs\Controller
 	}
 
 	public function index() {
-		echo 'This is Index.';		
+		$this->view->render('index/index');	
 	}
 }

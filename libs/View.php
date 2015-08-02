@@ -8,8 +8,8 @@ namespace Libs;
 class View
 {
 	
-	function __construct()
+	public function render(string $name)
 	{
-		echo 'view;';
+		require "views/$name.php";
 	}
 }

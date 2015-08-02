@@ -8,4 +8,4 @@ include 'libs/View.php';
 include 'libs/Filter.php';
 
 // Inserir namespaces e autoload
-$system = new Libs\Bootstrap();
+$app = new Libs\Bootstrap();

@@ -1,5 +1,7 @@
 <?php
 
+namespace Libs;
+
 class BichoTerrestre extends Bicho {
 
 	function __construct($nome, $idade){

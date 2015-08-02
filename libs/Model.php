@@ -10,6 +10,6 @@ class Model
 	
 	function __construct()
 	{
-		echo 'model;';
+		// echo 'model;';
 	}
 }
