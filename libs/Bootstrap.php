@@ -8,6 +8,6 @@ class Bootstrap
 	
 	function __construct()
 	{
-		echo 'Bora, Lima.. porra!';
+		echo $_SERVER['REQUEST_URI'];
 	}
 }
