@@ -19,5 +19,15 @@ class Bootstrap
 			(new \Controllers\Index)->loadModel('index');
 			return false;
 		}
+
+		$file = "controllers/{$url[0]}";
+
+		if (!file_exists($file)) {
+
+		}
+	}
+
+	public function error404() {
+		
 	}
 }
