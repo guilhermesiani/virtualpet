@@ -1,6 +1,6 @@
 <?php
 
-include 'configs/config.php';
+include 'config.php';
 
 function autoload($className)
 {
@@ -21,6 +21,4 @@ function autoload($className)
 
 spl_autoload_register('autoload');
 
-
-// Inserir namespaces e autoload
 $app = new Libs\Bootstrap();

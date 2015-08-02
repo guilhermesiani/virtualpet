@@ -1,5 +1,4 @@
 <?php
 
-/* Some confs here */
-
+/* Some conf here */
 define('CONSTANTE', 'VALOR');
