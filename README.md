@@ -1,5 +1,7 @@
 LEIA-ME
 
-temos que usar isto, eu acho...
+PHP 7!
 
-Favor usar PHP 5.6!
+Só baixar e rodar o servidor embutido mesmo:
+
+http://php.net
