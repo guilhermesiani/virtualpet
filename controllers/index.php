@@ -2,8 +2,6 @@
 
 namespace Controllers;
 
-use Libs;
-
 /**
 *  Index Controller
 */
