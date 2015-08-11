@@ -15,7 +15,8 @@ function autoload($className)
 	}
 
 	$fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
-
+	$fileName = lcfirst($fileName);
+	
 	require $fileName;
 }
 
