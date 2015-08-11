@@ -1,6 +1,8 @@
 <?php
 
-namespace Libs\Pets;
+namespace Libs\Pet;
+
+use Libs\Pet\AnimalKingdom\AnimalKingdom as AnimalKingdom;
 
 /**
  * Superclass abstract.
@@ -23,6 +25,8 @@ abstract class Pet {
 	 */
 	public function __construct(string $name, AnimalKingdom $kind) 
 	{
+		echo "Olá, eu sou $name e sou dá espécie ".get_class($kind);
+
 		$this->name = $name;
 		$this->kind = $kind;
 	}
@@ -103,10 +107,7 @@ abstract class Pet {
 	 * Força a classe filha a ter este método. O evelhecimento será definido de acordo com o planeta.
 	 * @param planet [type] object
 	 */
-	public abstract function getOld(float $factor)
-	{
-		$this->age += $factor;
-	}
+	public abstract function getOld(float $factor);
 
 	public function feed(Food $food)
 	{

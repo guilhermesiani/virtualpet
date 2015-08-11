@@ -1,6 +1,12 @@
 <?php
 
-class MartianFlyingPet implements AnimalKingdom, MartianAnimalKindgom, Flying
+namespace Libs\Pet\MartianPet;
+
+use Libs\Pet\AnimalKingdom\AnimalKingdom as AnimalKingdom;
+use Libs\Pet\AnimalKingdom\MartianAnimalKingdom as MartianAnimalKingdom;
+use Libs\Pet\Specie\Flying as Flying;
+
+class MartianFlyingPet implements AnimalKingdom, MartianAnimalKingdom, Flying
 {
 	public function eatFood() 
 	{

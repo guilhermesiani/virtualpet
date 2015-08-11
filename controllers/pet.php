@@ -2,6 +2,9 @@
 
 namespace Controllers;
 
+use Libs\Pet\MartianPet\MartianPet as MartianPet;
+use Libs\Pet\MartianPet\MartianFlyingPet as MartianFlyingPet;
+
 /**
 * 
 */
@@ -15,7 +18,11 @@ class Pet extends \Libs\Controller
 
 	public function index()
 	{
-		$this->view->render('pet/index');
+		$pet = new MartianPet('Dolly', new MartianFlyingPet);
+
+		echo "<br>Tenho apenas {$pet->getAge()} ano de vida";
+
+		// $this->view->render('pet/index');
 	}
 
 	public function another(string $test, string $test2, string $test3)
