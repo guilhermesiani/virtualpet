@@ -10,7 +10,7 @@ class EarthPet extends Pet
 		parent::__construct($name, $kind);
 	}
 
-	public function getOld()
+	public function getOld(float $factor)
 	{
 		$this->setAge($this->getAge + 0.336);
 	}
