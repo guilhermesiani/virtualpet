@@ -22,13 +22,11 @@ class Pet extends \Libs\Controller
 
 		echo "<br>Tenho apenas {$pet->getAge()} ano de vida";
 
-		// $this->view->render('pet/index');
+		$this->view->render('pet/index');
 	}
 
-	public function another(string $test, string $test2, string $test3)
+	public function action(string $action, string $something)
 	{
-		echo $test.'<br>';
-		echo $test2.'<br>';
-		echo $test3;exit;
+		
 	}
 }

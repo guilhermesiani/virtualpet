@@ -15,7 +15,7 @@ abstract class Pet {
 	private $age = 1;
 	private $hunger = 0;
 	private $stress = 0;
-	private $dead = false;
+	private $alive = true;
 		
 	/**
 	 * [__construct description]
@@ -25,8 +25,6 @@ abstract class Pet {
 	 */
 	public function __construct(string $name, AnimalKingdom $kind) 
 	{
-		echo "Olá, eu sou $name e sou dá espécie ".get_class($kind);
-
 		$this->name = $name;
 		$this->kind = $kind;
 	}
@@ -60,19 +58,18 @@ abstract class Pet {
 
 	public function setHunger(int $satisfied) 
 	{
-		if (($this->hunger - $satisfied) >= 0)
-			$this->hunger -= $satisfied;
-		else
-			$this->hunger = 0;
+		$this->hunger = $satisfied;
 	}
 
 	public function setStress(int $placid) 
 	{
-		if (($this->stress - $placid) >= 0)
-			$this->stress -= $placid;
-		else
-			$this->stress = 0;
+		$this->stress = $placid;
 	}
+
+	public function getId() 
+	{
+		return $this->id;
+	}	
 
 	/**
 	 * [getName description]
@@ -102,6 +99,11 @@ abstract class Pet {
 		return $this->stress;
 	}
 
+	public function getAlive()
+	{
+		return $this->alive;
+	}	
+
 	/**
 	 * [envelhecer description]
 	 * Força a classe filha a ter este método. O evelhecimento será definido de acordo com o planeta.
@@ -126,6 +128,6 @@ abstract class Pet {
 	 */
 	public function die() 
 	{
-		$this->dead = true;
-	}	
+		$this->alive = false;
+	}
 }
