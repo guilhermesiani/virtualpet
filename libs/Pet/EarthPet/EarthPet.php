@@ -1,8 +1,10 @@
 <?php
 
-namespace Libs\Pets;
+namespace Libs\Pet\EarthPet;
 
-class EarthPet extends Pet 
+use Libs\Pet\AnimalKingdom\EarthAnimalKingdom as EarthAnimalKingdom;
+
+class EarthPet extends \Libs\Pet\Pet  
 {
 	private $getOldFactor = 0.336; 
 	

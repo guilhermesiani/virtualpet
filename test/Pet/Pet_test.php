@@ -74,10 +74,12 @@ class TestOfPet extends UnitTestCase
 		$this->assertIsA($this->pet->getAlive(), 'bool');
 		$this->pet->die();
 		$this->assertIsA($this->pet->getAlive(), 'bool');
+		$this->assertIdentical($this->pet->getAlive(), false);
 	}	
 
 	public function testGetOld()
 	{
+		$this->assertIsA($this->pet->getAge(), 'float');
 		$this->pet->getOld(1.0);
 		$this->assertIsA($this->pet->getAge(), 'float');
 		$this->assertIdentical($this->pet->getAge(), 1.2);
