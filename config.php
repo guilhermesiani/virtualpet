@@ -1,4 +1,4 @@
 <?php
 
 /* Some conf here */
-define('CONSTANTE', 'VALOR');
+define('URL', 'http://localhost:9090/');

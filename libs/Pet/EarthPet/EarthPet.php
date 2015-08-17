@@ -1,17 +1,20 @@
 <?php
 
-namespace Libs\Pets;
+namespace Libs\Pet\EarthPet;
 
-class EarthPet extends Pet 
+use Libs\Pet\AnimalKingdom\EarthAnimalKingdom as EarthAnimalKingdom;
+
+class EarthPet extends \Libs\Pet\Pet  
 {
+	private $getOldFactor = 0.336; 
 	
 	public function __construct(string $name, EarthAnimalKingdom $kind) 
 	{
 		parent::__construct($name, $kind);
 	}
 
-	public function getOld(float $factor)
+	public function getOld(float $time)
 	{
-		$this->setAge($this->getAge + 0.336);
+		$this->setAge($time + $this->getOldFactor);
 	}
 }

@@ -15,7 +15,7 @@ abstract class Pet {
 	private $age = 1;
 	private $hunger = 0;
 	private $stress = 0;
-	private $dead = false;
+	private $alive = true;
 		
 	/**
 	 * [__construct description]
@@ -25,8 +25,6 @@ abstract class Pet {
 	 */
 	public function __construct(string $name, AnimalKingdom $kind) 
 	{
-		echo "Olá, eu sou $name e sou dá espécie ".get_class($kind);
-
 		$this->name = $name;
 		$this->kind = $kind;
 	}
@@ -60,25 +58,24 @@ abstract class Pet {
 
 	public function setHunger(int $satisfied) 
 	{
-		if (($this->hunger - $satisfied) >= 0)
-			$this->hunger -= $satisfied;
-		else
-			$this->hunger = 0;
+		$this->hunger = $satisfied;
 	}
 
 	public function setStress(int $placid) 
 	{
-		if (($this->stress - $placid) >= 0)
-			$this->stress -= $placid;
-		else
-			$this->stress = 0;
+		$this->stress = $placid;
 	}
+
+	public function getId(): int
+	{
+		return $this->id;
+	}	
 
 	/**
 	 * [getName description]
 	 * Força a classe filha a ter este método get.
 	 */
-	public function getName() 
+	public function getName(): string 
 	{
 		return $this->name;
 	}
@@ -87,20 +84,25 @@ abstract class Pet {
 	 * [getAge description]
 	 * Força a classe filha a ter este método get.
 	 */
-	public function getAge() 
+	public function getAge(): float 
 	{
 		return $this->age;
 	}
 
-	public function getHunger() 
+	public function getHunger(): int 
 	{
 		return $this->hunger;
 	}
 
-	public function getStress() 
+	public function getStress(): int 
 	{
 		return $this->stress;
 	}
+
+	public function getAlive(): bool
+	{
+		return $this->alive;
+	}	
 
 	/**
 	 * [envelhecer description]
@@ -109,14 +111,16 @@ abstract class Pet {
 	 */
 	public abstract function getOld(float $factor);
 
-	public function feed(Food $food)
+	public function feed(\Libs\Food $food)
 	{
+		echo 'Eating... '.get_class($food);exit;
 		$satisfied = $kind->eatFood($food); // new FreshMeet
 		$this->setHunger($satisfied);
 	}
 
-	public function play(Toy $toy)
+	public function play(\Libs\Toy $toy)
 	{
+		echo 'Playing with... '.get_class($toy);exit;
 		$placid = $kind->playWithToy($toy); // new Ball
 		$this->setStress($placid);
 	}	
@@ -126,6 +130,6 @@ abstract class Pet {
 	 */
 	public function die() 
 	{
-		$this->dead = true;
-	}	
+		$this->alive = false;
+	}
 }
