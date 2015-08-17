@@ -1,0 +1,330 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: pet; Type: TABLE; Schema: public; Owner: guilhermesiani; Tablespace: 
+--
+
+CREATE TABLE pet (
+    pet_id integer NOT NULL,
+    pet_owner_id integer NOT NULL,
+    pet_planet_id integer NOT NULL,
+    pet_kind_id integer NOT NULL,
+    age double precision NOT NULL,
+    hunger integer NOT NULL,
+    stress integer NOT NULL,
+    alive boolean
+);
+
+
+ALTER TABLE pet OWNER TO guilhermesiani;
+
+--
+-- Name: pet_kind; Type: TABLE; Schema: public; Owner: guilhermesiani; Tablespace: 
+--
+
+CREATE TABLE pet_kind (
+    pet_kind_id integer NOT NULL,
+    kind character varying(40) NOT NULL
+);
+
+
+ALTER TABLE pet_kind OWNER TO guilhermesiani;
+
+--
+-- Name: pet_kind_pet_kind_id_seq; Type: SEQUENCE; Schema: public; Owner: guilhermesiani
+--
+
+CREATE SEQUENCE pet_kind_pet_kind_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE pet_kind_pet_kind_id_seq OWNER TO guilhermesiani;
+
+--
+-- Name: pet_kind_pet_kind_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: guilhermesiani
+--
+
+ALTER SEQUENCE pet_kind_pet_kind_id_seq OWNED BY pet_kind.pet_kind_id;
+
+
+--
+-- Name: pet_owner; Type: TABLE; Schema: public; Owner: guilhermesiani; Tablespace: 
+--
+
+CREATE TABLE pet_owner (
+    pet_owner_id integer NOT NULL,
+    username character varying(70) NOT NULL,
+    email character varying(100) NOT NULL,
+    password character varying(256) NOT NULL,
+    register_date timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE pet_owner OWNER TO guilhermesiani;
+
+--
+-- Name: pet_owner_pet_owner_id_seq; Type: SEQUENCE; Schema: public; Owner: guilhermesiani
+--
+
+CREATE SEQUENCE pet_owner_pet_owner_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE pet_owner_pet_owner_id_seq OWNER TO guilhermesiani;
+
+--
+-- Name: pet_owner_pet_owner_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: guilhermesiani
+--
+
+ALTER SEQUENCE pet_owner_pet_owner_id_seq OWNED BY pet_owner.pet_owner_id;
+
+
+--
+-- Name: pet_pet_id_seq; Type: SEQUENCE; Schema: public; Owner: guilhermesiani
+--
+
+CREATE SEQUENCE pet_pet_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE pet_pet_id_seq OWNER TO guilhermesiani;
+
+--
+-- Name: pet_pet_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: guilhermesiani
+--
+
+ALTER SEQUENCE pet_pet_id_seq OWNED BY pet.pet_id;
+
+
+--
+-- Name: pet_planet; Type: TABLE; Schema: public; Owner: guilhermesiani; Tablespace: 
+--
+
+CREATE TABLE pet_planet (
+    pet_planet_id integer NOT NULL,
+    planet character varying(40) NOT NULL
+);
+
+
+ALTER TABLE pet_planet OWNER TO guilhermesiani;
+
+--
+-- Name: pet_planet_pet_planet_id_seq; Type: SEQUENCE; Schema: public; Owner: guilhermesiani
+--
+
+CREATE SEQUENCE pet_planet_pet_planet_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE pet_planet_pet_planet_id_seq OWNER TO guilhermesiani;
+
+--
+-- Name: pet_planet_pet_planet_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: guilhermesiani
+--
+
+ALTER SEQUENCE pet_planet_pet_planet_id_seq OWNED BY pet_planet.pet_planet_id;
+
+
+--
+-- Name: pet_id; Type: DEFAULT; Schema: public; Owner: guilhermesiani
+--
+
+ALTER TABLE ONLY pet ALTER COLUMN pet_id SET DEFAULT nextval('pet_pet_id_seq'::regclass);
+
+
+--
+-- Name: pet_kind_id; Type: DEFAULT; Schema: public; Owner: guilhermesiani
+--
+
+ALTER TABLE ONLY pet_kind ALTER COLUMN pet_kind_id SET DEFAULT nextval('pet_kind_pet_kind_id_seq'::regclass);
+
+
+--
+-- Name: pet_owner_id; Type: DEFAULT; Schema: public; Owner: guilhermesiani
+--
+
+ALTER TABLE ONLY pet_owner ALTER COLUMN pet_owner_id SET DEFAULT nextval('pet_owner_pet_owner_id_seq'::regclass);
+
+
+--
+-- Name: pet_planet_id; Type: DEFAULT; Schema: public; Owner: guilhermesiani
+--
+
+ALTER TABLE ONLY pet_planet ALTER COLUMN pet_planet_id SET DEFAULT nextval('pet_planet_pet_planet_id_seq'::regclass);
+
+
+--
+-- Data for Name: pet; Type: TABLE DATA; Schema: public; Owner: guilhermesiani
+--
+
+COPY pet (pet_id, pet_owner_id, pet_planet_id, pet_kind_id, age, hunger, stress, alive) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pet_kind; Type: TABLE DATA; Schema: public; Owner: guilhermesiani
+--
+
+COPY pet_kind (pet_kind_id, kind) FROM stdin;
+\.
+
+
+--
+-- Name: pet_kind_pet_kind_id_seq; Type: SEQUENCE SET; Schema: public; Owner: guilhermesiani
+--
+
+SELECT pg_catalog.setval('pet_kind_pet_kind_id_seq', 1, false);
+
+
+--
+-- Data for Name: pet_owner; Type: TABLE DATA; Schema: public; Owner: guilhermesiani
+--
+
+COPY pet_owner (pet_owner_id, username, email, password, register_date) FROM stdin;
+\.
+
+
+--
+-- Name: pet_owner_pet_owner_id_seq; Type: SEQUENCE SET; Schema: public; Owner: guilhermesiani
+--
+
+SELECT pg_catalog.setval('pet_owner_pet_owner_id_seq', 1, false);
+
+
+--
+-- Name: pet_pet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: guilhermesiani
+--
+
+SELECT pg_catalog.setval('pet_pet_id_seq', 1, false);
+
+
+--
+-- Data for Name: pet_planet; Type: TABLE DATA; Schema: public; Owner: guilhermesiani
+--
+
+COPY pet_planet (pet_planet_id, planet) FROM stdin;
+\.
+
+
+--
+-- Name: pet_planet_pet_planet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: guilhermesiani
+--
+
+SELECT pg_catalog.setval('pet_planet_pet_planet_id_seq', 1, false);
+
+
+--
+-- Name: unique_pet_id; Type: CONSTRAINT; Schema: public; Owner: guilhermesiani; Tablespace: 
+--
+
+ALTER TABLE ONLY pet
+    ADD CONSTRAINT unique_pet_id UNIQUE (pet_id);
+
+
+--
+-- Name: unique_pet_kind_id; Type: CONSTRAINT; Schema: public; Owner: guilhermesiani; Tablespace: 
+--
+
+ALTER TABLE ONLY pet_kind
+    ADD CONSTRAINT unique_pet_kind_id UNIQUE (pet_kind_id);
+
+
+--
+-- Name: unique_pet_owner_id; Type: CONSTRAINT; Schema: public; Owner: guilhermesiani; Tablespace: 
+--
+
+ALTER TABLE ONLY pet_owner
+    ADD CONSTRAINT unique_pet_owner_id UNIQUE (pet_owner_id);
+
+
+--
+-- Name: unique_pet_planet_id; Type: CONSTRAINT; Schema: public; Owner: guilhermesiani; Tablespace: 
+--
+
+ALTER TABLE ONLY pet_planet
+    ADD CONSTRAINT unique_pet_planet_id UNIQUE (pet_planet_id);
+
+
+--
+-- Name: fk1_pet; Type: FK CONSTRAINT; Schema: public; Owner: guilhermesiani
+--
+
+ALTER TABLE ONLY pet
+    ADD CONSTRAINT fk1_pet FOREIGN KEY (pet_owner_id) REFERENCES pet_owner(pet_owner_id);
+
+
+--
+-- Name: fk2_pet; Type: FK CONSTRAINT; Schema: public; Owner: guilhermesiani
+--
+
+ALTER TABLE ONLY pet
+    ADD CONSTRAINT fk2_pet FOREIGN KEY (pet_planet_id) REFERENCES pet_planet(pet_planet_id);
+
+
+--
+-- Name: fk3_pet; Type: FK CONSTRAINT; Schema: public; Owner: guilhermesiani
+--
+
+ALTER TABLE ONLY pet
+    ADD CONSTRAINT fk3_pet FOREIGN KEY (pet_kind_id) REFERENCES pet_kind(pet_kind_id);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: guilhermesiani
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM guilhermesiani;
+GRANT ALL ON SCHEMA public TO guilhermesiani;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
