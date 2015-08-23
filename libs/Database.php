@@ -2,6 +2,8 @@
 
 namespace Libs;
 
+use \Libs\Connector\ConnectorConfig as ConnectorConfig;
+
 /**
 * 
 */
@@ -17,7 +19,7 @@ class Database implements \Libs\Connector\Connector
 	public function connect(ConnectorConfig $connectorConfig)
 	{
 		if (!$this->isConnected()) {
-			$this->instance = new PDO($connectorConfig->getDsn,
+			$this->instance = new \PDO($connectorConfig->getDsn,
 				$connectorConfig->getUser(),
 				$connectorConfig->getPassword());
 
@@ -36,7 +38,7 @@ class Database implements \Libs\Connector\Connector
 
 	public function isConnected() 
 	{
-		return ($this->instance instanceof PDO)
+		return ($this->instance instanceof PDO);
 	}
 
 	public function getConnection()

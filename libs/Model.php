@@ -2,7 +2,7 @@
 
 namespace Libs;
 
-user \Libs\Connector\DBConnectorConfig\PostgreSQLConnectorConfig as PostgreSQLConnectorConfig;
+use \Libs\Connector\DBConnectorConfig\PostgreSQLConnectorConfig as PostgreSQLConnectorConfig;
 
 /**
 * 
@@ -12,14 +12,14 @@ class Model
 	
 	function __construct()
 	{
-		$postgreSQLConnectorConfig = new PostgreSQLConnectorConfig(
-			'localhost',
-			'dbname',
-			'user',
-			'pass'
-		);
+		// $postgreSQLConnectorConfig = new PostgreSQLConnectorConfig(
+		// 	'localhost',
+		// 	'virtualpet',
+		// 	'root',
+		// 	''
+		// );
 
-		$this->db = new Database($postgreSQLConnectorConfig);
+		// $this->db = new Database($postgreSQLConnectorConfig);
 	}
 
 	public function select()
