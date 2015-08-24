@@ -12,14 +12,14 @@ class Model
 	
 	function __construct()
 	{
-		// $postgreSQLConnectorConfig = new PostgreSQLConnectorConfig(
-		// 	'localhost',
-		// 	'virtualpet',
-		// 	'root',
-		// 	''
-		// );
+		$postgreSQLConnectorConfig = new PostgreSQLConnectorConfig(
+			'localhost',
+			'virtualpet',
+			'root',
+			''
+		);
 
-		// $this->db = new Database($postgreSQLConnectorConfig);
+		$this->db = new Database($postgreSQLConnectorConfig);
 	}
 
 	public function select()

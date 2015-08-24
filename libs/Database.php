@@ -19,7 +19,7 @@ class Database implements \Libs\Connector\Connector
 	public function connect(ConnectorConfig $connectorConfig)
 	{
 		if (!$this->isConnected()) {
-			$this->instance = new \PDO($connectorConfig->getDsn,
+			$this->instance = new \PDO($connectorConfig->getDsn(),
 				$connectorConfig->getUser(),
 				$connectorConfig->getPassword());
 

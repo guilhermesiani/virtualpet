@@ -20,25 +20,25 @@ abstract class ConnectorConfig
 		$this->password = $password;
 	}
 
-	public function getHost()
+	public function getHost(): string
 	{
-		return $host;
+		return $this->host;
 	}
 
-	public function getDbName()
+	public function getDbName(): string
 	{
-		return $dbname;
+		return $this->dbname;
 	}
 
-	public function getUser()
+	public function getUser(): string
 	{
-		return $user;
+		return $this->user;
 	}
 
-	public function getPassword()
+	public function getPassword(): string
 	{
-		return $password;
+		return $this->password;
 	}
 
-	abstract public function getDsn();
+	abstract public function getDsn(): string;
 }
