@@ -24,13 +24,17 @@ class Model
 
 	public function select()
 	{
-		$stmt = $this->db->prepare("SELECT * FROM pet_planet WHERE pet_planet_id = 1");
-		$stmt->execute();
-		$data = $stmt->fetchAll();
+		$stmt = $this->db->prepare("SELECT * FROM pet_planet WHERE pet_planet_id = 1 limit 1");
 
 		echo '<pre>';
-		print_r($data);
-		exit;
+		if ($stmt->execute()) {
+			while ($row = $stmt->fetch()) {
+				print_r($row);
+			}
+		}
+
+
+		echo '</pre>';
 	}
 
 	public function insert()
