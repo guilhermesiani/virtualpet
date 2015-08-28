@@ -203,6 +203,7 @@ ALTER TABLE ONLY pet_planet ALTER COLUMN pet_planet_id SET DEFAULT nextval('pet_
 --
 
 COPY pet (pet_id, pet_owner_id, pet_planet_id, pet_kind_id, age, hunger, stress, alive) FROM stdin;
+1	1	2	2	1	1	1	t
 \.
 
 
@@ -211,6 +212,9 @@ COPY pet (pet_id, pet_owner_id, pet_planet_id, pet_kind_id, age, hunger, stress,
 --
 
 COPY pet_kind (pet_kind_id, kind) FROM stdin;
+1	flying
+2	marine
+3	terrestrial
 \.
 
 
@@ -218,7 +222,7 @@ COPY pet_kind (pet_kind_id, kind) FROM stdin;
 -- Name: pet_kind_pet_kind_id_seq; Type: SEQUENCE SET; Schema: public; Owner: guilhermesiani
 --
 
-SELECT pg_catalog.setval('pet_kind_pet_kind_id_seq', 1, false);
+SELECT pg_catalog.setval('pet_kind_pet_kind_id_seq', 3, true);
 
 
 --
@@ -226,6 +230,7 @@ SELECT pg_catalog.setval('pet_kind_pet_kind_id_seq', 1, false);
 --
 
 COPY pet_owner (pet_owner_id, username, email, password, register_date) FROM stdin;
+1	guilhermesiani	guilherme@siani.com.br	43085df4551fd38d1cc04829434775d6	2015-08-27 22:54:30
 \.
 
 
@@ -233,14 +238,14 @@ COPY pet_owner (pet_owner_id, username, email, password, register_date) FROM std
 -- Name: pet_owner_pet_owner_id_seq; Type: SEQUENCE SET; Schema: public; Owner: guilhermesiani
 --
 
-SELECT pg_catalog.setval('pet_owner_pet_owner_id_seq', 1, false);
+SELECT pg_catalog.setval('pet_owner_pet_owner_id_seq', 1, true);
 
 
 --
 -- Name: pet_pet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: guilhermesiani
 --
 
-SELECT pg_catalog.setval('pet_pet_id_seq', 1, false);
+SELECT pg_catalog.setval('pet_pet_id_seq', 1, true);
 
 
 --
@@ -248,6 +253,8 @@ SELECT pg_catalog.setval('pet_pet_id_seq', 1, false);
 --
 
 COPY pet_planet (pet_planet_id, planet) FROM stdin;
+1	earth
+2	mars
 \.
 
 
@@ -255,7 +262,7 @@ COPY pet_planet (pet_planet_id, planet) FROM stdin;
 -- Name: pet_planet_pet_planet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: guilhermesiani
 --
 
-SELECT pg_catalog.setval('pet_planet_pet_planet_id_seq', 1, false);
+SELECT pg_catalog.setval('pet_planet_pet_planet_id_seq', 2, true);
 
 
 --

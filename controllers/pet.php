@@ -20,7 +20,6 @@ class Pet extends \Libs\Controller
 
 	public function index()
 	{
-		$this->model->select();
 		$this->view->render('pet/index');
 	}
 

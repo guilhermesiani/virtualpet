@@ -24,7 +24,7 @@ class Model
 
 	public function select()
 	{
-		$stmt = $this->db->prepare("SELECT * FROM pet_planet WHERE pet_planet_id = 1 limit 1");
+		$stmt = $this->db->prepare("SELECT pet_planet_id, planet FROM pet_planet WHERE pet_planet_id = 1 limit 1");
 
 		echo '<pre>';
 		if ($stmt->execute()) {
