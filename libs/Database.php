@@ -24,8 +24,8 @@ class Database implements \Libs\Connector\Connector
 				$connectorConfig->getPassword());
 
 			$this->instance->setAttribute(
-				PDO::ATTR_ERRMODE,
-				PDO::ERRMODE_EXCEPTION
+				\PDO::ATTR_ERRMODE,
+				\PDO::ERRMODE_EXCEPTION
 			);
 		}
 	}
@@ -38,7 +38,7 @@ class Database implements \Libs\Connector\Connector
 
 	public function isConnected() 
 	{
-		return ($this->instance instanceof PDO);
+		return ($this->instance instanceof \PDO);
 	}
 
 	public function getConnection()

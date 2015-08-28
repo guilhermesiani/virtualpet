@@ -15,16 +15,22 @@ class Model
 		$postgreSQLConnectorConfig = new PostgreSQLConnectorConfig(
 			'localhost',
 			'virtualpet',
-			'root',
+			'guilhermesiani',
 			''
 		);
 
-		$this->db = new Database($postgreSQLConnectorConfig);
+		$this->db = (new Database($postgreSQLConnectorConfig))->getConnection();
 	}
 
 	public function select()
 	{
-		// TODO
+		$stmt = $this->db->prepare("SELECT * FROM pet_planet WHERE pet_planet_id = 1");
+		$stmt->execute();
+		$data = $stmt->fetchAll();
+
+		echo '<pre>';
+		print_r($data);
+		exit;
 	}
 
 	public function insert()
