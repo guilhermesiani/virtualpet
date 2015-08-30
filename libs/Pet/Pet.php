@@ -12,7 +12,7 @@ abstract class Pet {
 
 	private $id;
 	private $kind;
-	private $name;
+	private $name = 'No name';
 	private $age = 1;
 	private $hunger = 0;
 	private $stress = 0;
@@ -24,9 +24,8 @@ abstract class Pet {
 	 * @param name [type] string
 	 * @param age [type] integer
 	 */
-	public function __construct(string $name, AnimalKingdom $kind) 
+	public function __construct(AnimalKingdom $kind) 
 	{
-		$this->name = $name;
 		$this->kind = $kind;
 	}
 

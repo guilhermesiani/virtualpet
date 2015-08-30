@@ -8,9 +8,9 @@ class EarthPet extends \Libs\Pet\Pet
 {
 	private $getOldFactor = 0.336; 
 	
-	public function __construct(string $name, EarthAnimalKingdom $kind) 
+	public function __construct(EarthAnimalKingdom $kind) 
 	{
-		parent::__construct($name, $kind);
+		parent::__construct($kind);
 	}
 
 	public function getOld(float $time)

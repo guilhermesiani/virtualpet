@@ -8,9 +8,9 @@ class MartianPet extends \Libs\Pet\Pet
 {
 	private $getOldFactor = 0.2; 
 	
-	public function __construct(string $name, MartianAnimalKingdom $kind) 
+	public function __construct(MartianAnimalKingdom $kind) 
 	{
-		parent::__construct($name, $kind);
+		parent::__construct($kind);
 	}
 
 	public function getOld(float $time)
