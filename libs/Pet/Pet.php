@@ -3,6 +3,7 @@
 namespace Libs\Pet;
 
 use Libs\Pet\AnimalKingdom\AnimalKingdom as AnimalKingdom;
+use Libs\Session as Session;
 
 /**
  * Superclass abstract.
@@ -113,14 +114,28 @@ abstract class Pet {
 
 	public function feed(\Libs\Food $food)
 	{
-		echo 'Eating... '.get_class($food);exit;
+		// Test
+		echo 'Eating... '.get_class($food);
+		$this->hunger -= 5;
+		Session::set('pet', $this);		
+		header('Location: '.URL.'pet/index');		
+		exit;
+
+
 		$satisfied = $kind->eatFood($food); // new FreshMeet
 		$this->setHunger($satisfied);
 	}
 
 	public function play(\Libs\Toy $toy)
 	{
-		echo 'Playing with... '.get_class($toy);exit;
+		// Test
+		echo 'Playing with... '.get_class($toy);
+		$this->stress -= 5;
+		Session::set('pet', $this);
+		header('Location: '.URL.'pet/index');
+		exit;
+		
+
 		$placid = $kind->playWithToy($toy); // new Ball
 		$this->setStress($placid);
 	}	
@@ -132,4 +147,20 @@ abstract class Pet {
 	{
 		$this->alive = false;
 	}
+
+	public function __get($param)
+	{
+		try {
+			$getParam = 'get'.ucfirst($param);
+			return $this->$getParam();
+		} catch (Exception $e) {
+			throw new \Exception($e->getMessage());
+		}
+
+	}
+
+	public function __set($name, $value)
+	{
+		throw new \Exception('Unavailable action');
+	}	
 }

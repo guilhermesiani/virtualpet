@@ -7,6 +7,8 @@ namespace Libs;
 */
 class Session
 {
+	const UNSERIALIZE = true;
+	
 	private function __construct() {}
 
 	public static function init()
