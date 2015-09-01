@@ -16,18 +16,29 @@ class Register extends \Libs\Controller
 		Session::init();
 	}
 
-	public function step_one()
+	public function stepOne()
 	{
-		// TODO
+		$this->view->render('register/step_one');
 	}
 
-	public function step_two()
+	public function stepTwo()
 	{
-		// TODO
+		// Session::set('username', $_POST['username']);
+		// Session::set('email', $_POST['email']);
+		// Session::set('password', $_POST['password']);
+
+		$this->view->render('register/step_two');
 	}	
 
-	public function step_three()
+	public function stepThree()
 	{
-		// TODO
+		// Session::set('planet', $_POST['planet']);
+
+		$this->view->render('register/step_three');
+	}
+
+	public function save()
+	{
+		header('Location: '.URL.'pet/index');
 	}	
 }
