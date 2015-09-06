@@ -13,7 +13,8 @@ class Index extends \Libs\Controller
 		parent::__construct();
 	}
 
-	public function index() {
+	public function index() 
+	{
 		$this->view->render('index/index');	
 	}
 }

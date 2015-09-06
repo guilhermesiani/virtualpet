@@ -22,7 +22,7 @@ class Model
 		$this->db = (new Database($postgreSQLConnectorConfig))->getConnection();
 	}
 
-	public function select($query, $array = [], $fetchMode = \PDO::FETCH_ASSOC)
+	public function select(string $query, array $array = [], PDO $fetchMode = \PDO::FETCH_ASSOC): array
 	{
 		$sth = $this->prepare($query);
 		foreach ($array as $key => $value) {
@@ -34,14 +34,40 @@ class Model
 		return $sth->fetchAll($fetchMode);
 	}
 
-	public function insert()
+	public function insert(string $table, array $data): void
 	{
-		// TODO
+		ksort($data);
+
+		$fieldNames = implode('`, `', array_keys($data));
+		$fieldValues = ':' . implode(', :', array_keys($data));
+
+		$sth = $this->prepare("INSERT INTO $table (`$fieldNames`) VALUES ($fieldValues)");
+
+		foreach ($data as $key => $value) {
+			$sth->bindValue(":$key", $value);
+		}
+
+		$sth->execute();
 	}	
 
-	public function update()
+	public function update(string $table, array $data, string $where): void
 	{
-		// TODO
+		ksort($data);
+
+		$fieldDetails = null;
+		foreach ($data as $key => $value) {
+			$fieldDetails .= "`$key` = :$key,";
+		}
+
+		$fieldDetails = rtrim($fieldDetails, ',');
+
+		$sth = $this->prepare("UPDATE $table SET $fieldDetails WHERE $where");
+
+		foreach ($data as $key => $value) {
+			$sth->bindValue(":$key", $value);
+		}
+
+		$sth->execute();
 	}	
 
 	public function delete()

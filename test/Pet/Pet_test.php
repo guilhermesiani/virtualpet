@@ -20,7 +20,7 @@ class TestOfPet extends UnitTestCase
 
 	function __construct() 
 	{
-		$this->pet = new MartianPet('Test', new MartianFlyingPet);
+		$this->pet = new MartianPet(new MartianFlyingPet);
 	}
 
 	public function testConstruct()
