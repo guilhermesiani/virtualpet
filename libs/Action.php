@@ -13,6 +13,7 @@ class Ball extends Toy {}
 class Action 
 {
 	private $pet;
+	private $actions = ['feed', 'play'];
 
 	function __construct(Pet\Pet $pet)
 	{
@@ -21,7 +22,7 @@ class Action
 
 	public function do(string $action, string $element)
 	{
-		if (!method_exists($this->pet, $action))
+		if (!in_array($action, $this->actions))
 			throw new Exception("The action '$action' does not exist");
 
 		$element = '\\Libs\\'.$element;

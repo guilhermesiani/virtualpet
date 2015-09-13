@@ -3,33 +3,35 @@
 namespace Libs\DAO;
 
 use Libs\Model as Model;
-use Libs\Pet\PetFactory as PetFactory;
+use Libs\Pet\PetFactory\PetFactory as PetFactory;
 
 /**
 * 
 */
 class PetDAO extends Model
 {
-	public function findById(int $id): Pet
+	// not working
+	// public function findById(int $id): Pet
+	public function findById(int $id)
 	{
-		$data = $this->db->select("SELECT pet_id, age, hunger, stress, 
+		$data = $this->select("SELECT pet_id, age, hunger, stress, 
 			alive, planet, kind FROM pet AS p
 			LEFT JOIN pet_planet AS pp ON pp.pet_planet_id = p.pet_planet_id 
 			LEFT JOIN pet_kind AS pk ON pk.pet_kind_id = p.pet_kind_id 
 			WHERE p.pet_id = :id limit 1", 
 			[':id' => $id]
-		);
+		)[0];
 
 		$petFactory = new PetFactory($data['planet'], $data['kind']);
 		$pet = $petFactory->createPet();
 
-	    $pet->setId($petData['pet_id']);
+	    $pet->setId($data['pet_id']);
 	    $pet->setName('Little Dolly');
-	    $pet->setAge($petData['age']);
-	    $pet->setHunger(90);
-	    $pet->setStress(90);
+	    $pet->setAge($data['age']);
+	    $pet->setHunger($data['hunger']);
+	    $pet->setStress($data['stress']);
 
-	    if ($petData['alive'] != 1)
+	    if ($data['alive'] != 1)
 	    	$pet->die();
 
 	    return $pet;		

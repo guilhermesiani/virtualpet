@@ -1,8 +1,9 @@
 <?php
 
-namespace \Libs\DAO;
+namespace Libs\DAO;
 
-use \Libs\PetOwner\PetOwner as PetOwner;
+use Libs\Model as Model;
+use Libs\PetOwner\PetOwner as PetOwner;
 
 /**
 * 

@@ -11,7 +11,10 @@ class PetOwner
 	private $password;
 	private $registerDate;
 	
-	function __construct() {}
+	function __construct() 
+	{
+		$this->registerDate = new DateTime();
+	}
 
 	public function setId(int $id): void
 	{
@@ -63,7 +66,7 @@ class PetOwner
 
 	public function getRegisterDate(): DateTime
 	{
-		if (instanceof $this->registerDate != DateTime)
+		if (!$this->registerDate instanceof DateTime)
 			return new DateTime;
 
 		return $this->registerDate;

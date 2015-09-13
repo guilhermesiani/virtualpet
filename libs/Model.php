@@ -22,9 +22,12 @@ class Model
 		$this->db = (new Database($postgreSQLConnectorConfig))->getConnection();
 	}
 
-	public function select(string $query, array $array = [], PDO $fetchMode = \PDO::FETCH_ASSOC): array
+	protected function select(
+		string $query, 
+		array $array = [], 
+		$fetchMode = \PDO::FETCH_ASSOC): array
 	{
-		$sth = $this->prepare($query);
+		$sth = $this->db->prepare($query);
 		foreach ($array as $key => $value) {
 			$sth->bindValue("$key", $value);
 		}
@@ -34,7 +37,7 @@ class Model
 		return $sth->fetchAll($fetchMode);
 	}
 
-	public function insert(string $table, array $data): void
+	protected function insert(string $table, array $data): void
 	{
 		ksort($data);
 
@@ -50,7 +53,7 @@ class Model
 		$sth->execute();
 	}	
 
-	public function update(string $table, array $data, string $where): void
+	protected function update(string $table, array $data, string $where): void
 	{
 		ksort($data);
 
@@ -73,5 +76,10 @@ class Model
 	public function delete()
 	{
 		// TODO
-	}	
+	}
+
+	public function __call(string $method, array $arguments): void
+	{
+		throw new \Exception(sprintf("%s does not have a function called '%s'", get_class($this), $method));
+	}		
 }
