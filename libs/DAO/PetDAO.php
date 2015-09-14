@@ -2,6 +2,7 @@
 
 namespace Libs\DAO;
 
+use Libs\DAO\DAOInterface as DAOInterface;
 use Libs\Model as Model;
 use Libs\Pet\PetFactory\PetFactory as PetFactory;
 
@@ -35,5 +36,25 @@ class PetDAO extends Model
 	    	$pet->die();
 
 	    return $pet;		
+	}
+
+	public function save(Pet $pet)
+	{
+		$petArray = [
+			'age' => $petOwner->getAge(),
+			'hunger' => $petOwner->getHunger(),
+			'stress' => $petOwner->getStress(),
+			'alive' => $petOwner->getAlive()
+		];
+
+		try {
+			if ($pet->getNewborn()) {
+				$this->insert('pet', $petArray);
+			} else {
+				$this->update('pet', $petArray, "pet_id = {$pet->getId}");				
+			}
+		} catch (Exception $e) {
+			throw new Exception($e->getMessage());
+		}
 	}
 }

@@ -104,6 +104,11 @@ abstract class Pet {
 		return $this->alive;
 	}	
 
+	public function getNewborn(): bool
+	{
+		return is_null($this->id);
+	}
+
 	/**
 	 * [envelhecer description]
 	 * Força a classe filha a ter este método. O evelhecimento será definido de acordo com o planeta.
@@ -137,7 +142,7 @@ abstract class Pet {
 
 		$placid = $kind->playWithToy($toy); // new Ball
 		$this->setStress($placid);
-	}	
+	}
 
 	/**
 	 *  :(

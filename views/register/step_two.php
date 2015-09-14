@@ -1,3 +1,6 @@
+VirtualPet
+<br>
+<br>
 <form method="POST" action="<?php echo URL; ?>register/stepThree">
 	<fieldset>
 		<legend>Planeta origem</legend>

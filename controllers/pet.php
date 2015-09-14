@@ -17,13 +17,15 @@ class Pet extends \Libs\Controller
 	{
 		parent::__construct();
 		Session::init();
+
+		if (!Session::get('pet')) {
+			header('Location: '.URL.'index');
+			exit;
+		}
 	}
 
 	public function index()
 	{
-		// $pet = DAO::on('Pet')->findById(1);
-	 //    Session::set('pet', $pet);
-
 	    $this->view->pet = Session::get('pet', Session::UNSERIALIZE);
 		$this->view->render('pet/index');
 	}
@@ -32,5 +34,11 @@ class Pet extends \Libs\Controller
 	{
 		$action = new Action(Session::get('pet', Session::UNSERIALIZE));
 		$action->do($do, $element);
+	}
+
+	public function logout()
+	{
+		Session::destroy();
+		header('Location: '.URL.'index');
 	}
 }

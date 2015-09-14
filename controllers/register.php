@@ -51,11 +51,9 @@ class Register extends \Libs\Controller
 		$pet = $petFactory->createPet();
 
 		// Usar transação
-		$petDAO = new PetDAO();
-		$petDAO->insert($pet);
-		$petOwnerDAO = new PetOwnerDAO();
-		$petOwnerDAO->insert($petOwner);
+		DAO::on('PetOwner')->save($petOwner);
+		// DAO::on('Pet')->insert($pet);
 
-		header('Location: '.URL.'pet/index');
+		header('Location: '.URL.'login/run');
 	}	
 }

@@ -2,46 +2,20 @@
 
 namespace Libs\DAO;
 
+use Libs\DAO\DAOInterface as DAOInterface;
+use Libs\DAO\DAOInvalidObjectException;
 use Libs\Model as Model;
 use Libs\PetOwner\PetOwner as PetOwner;
 
 /**
 * 
 */
-class PetOwnerDAO extends Model
+class PetOwnerDAO extends Model implements DAOInterface
 {
-	private $lastInsertId;
-
-	public function insert(PetOwner $petOwner, string $password): void
-	{
-		if ($petOwner->id)
-			throw new Exception('Can not insert PetOwner with an existing ID.');
-
-		try {
-			// TODO: Implementar transacao para garantir que o ID retornado seja do insert atual
-			$this->db->insert('pet_owner',
-				[
-					'username' 		=> $petOwner->username,
-					'email' 		=> $petOwner->email,
-					'password' 		=> \Libs\Password::create($petOwner->password),
-					'register_date' => date('Y-m-d H:i:s')
-				]	
-			);
-
-			$this->lastInsertId = $this->db->lastInsertId();
-		} catch (Exception $e) {
-			throw new Exception($e->getMessage());
-		}
-	}
-
-	public function getLastInsertId(): int
-	{
-		return $this->lastInsertId;
-	}
 
 	public function getByEmail(string $email): PetOwner
 	{
-		$data = $this->db->select('SELECT pet_owner_id, email, password 
+		$data = $this->select('SELECT pet_owner_id, email, password 
 			FROM pet_owner WHERE email = :email', [':email' => $email])[0];
 
 		if (empty($data)) return false;
@@ -54,19 +28,26 @@ class PetOwnerDAO extends Model
 		return $petOwner;
 	}
 
-	public function update(PetOwner $petOwner): void
+	public function save($petOwner)
 	{
-		$postData = [
+		if (!$petOwner instanceof PetOwner)
+			throw new DAOInvalidObjectException("Object passed to save is not an instance of 'PetOwner'");
+
+		$petOwnerArray = [
 			'username' => $petOwner->getUsername(),
 			'email' => $petOwner->getEmail(),
-			'password' => $petOwner->getPassword()
+			'password' => $petOwner->getPassword(),
+			'register_date' => $petOwner->getRegisterDate()->format('Y-m-d')
 		];
 
-		$tihs->db->update('pet_owner', $postData, "pet_owner_id = {$petOwner->getId}");
-	}
-
-	public function delete(PetOWner $petOwner): bool
-	{
-		// TODO
+		try {
+			if ($petOwner->getNewPetOwner()) {
+				$this->insert('pet_owner', $petOwnerArray);
+			} else {
+				$this->update('pet_owner', $petOwnerArray, "pet_owner_id = {$petOwner->getId}");				
+			}
+		} catch (Exception $e) {
+			throw new Exception($e->getMessage());
+		}
 	}
 }

@@ -9,7 +9,6 @@ use \Libs\Connector\DBConnectorConfig\PostgreSQLConnectorConfig as PostgreSQLCon
 */
 class Model
 {
-	
 	function __construct()
 	{
 		$postgreSQLConnectorConfig = new PostgreSQLConnectorConfig(
@@ -37,14 +36,14 @@ class Model
 		return $sth->fetchAll($fetchMode);
 	}
 
-	protected function insert(string $table, array $data): void
+	protected function insert(string $table, array $data)
 	{
 		ksort($data);
 
-		$fieldNames = implode('`, `', array_keys($data));
+		$fieldNames = implode(', ', array_keys($data));
 		$fieldValues = ':' . implode(', :', array_keys($data));
 
-		$sth = $this->prepare("INSERT INTO $table (`$fieldNames`) VALUES ($fieldValues)");
+		$sth = $this->db->prepare("INSERT INTO $table ($fieldNames) VALUES ($fieldValues)");
 
 		foreach ($data as $key => $value) {
 			$sth->bindValue(":$key", $value);
@@ -53,7 +52,7 @@ class Model
 		$sth->execute();
 	}	
 
-	protected function update(string $table, array $data, string $where): void
+	protected function update(string $table, array $data, string $where)
 	{
 		ksort($data);
 
@@ -64,7 +63,7 @@ class Model
 
 		$fieldDetails = rtrim($fieldDetails, ',');
 
-		$sth = $this->prepare("UPDATE $table SET $fieldDetails WHERE $where");
+		$sth = $this->db->prepare("UPDATE $table SET $fieldDetails WHERE $where");
 
 		foreach ($data as $key => $value) {
 			$sth->bindValue(":$key", $value);
@@ -73,12 +72,17 @@ class Model
 		$sth->execute();
 	}	
 
-	public function delete()
+	protected function delete()
 	{
 		// TODO
 	}
 
-	public function __call(string $method, array $arguments): void
+	public function getLastInsertId(): int
+	{
+		return $this->db->lastInsertId();
+	}	
+
+	public function __call(string $method, array $arguments)
 	{
 		throw new \Exception(sprintf("%s does not have a function called '%s'", get_class($this), $method));
 	}		

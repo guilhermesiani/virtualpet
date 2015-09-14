@@ -1,5 +1,9 @@
 <?php
 
+namespace Libs\PetOwner;
+
+use DateTime;
+
 /**
 * 
 */
@@ -16,27 +20,27 @@ class PetOwner
 		$this->registerDate = new DateTime();
 	}
 
-	public function setId(int $id): void
+	public function setId(int $id)
 	{
 		$this->id = $id;
 	}
 
-	public function setUsername(string $username): void
+	public function setUsername(string $username)
 	{
 		$this->username = $username;
 	}
 
-	public function setEmail(string $email): void
+	public function setEmail(string $email)
 	{
 		$this->email = $email;
 	}
 
-	public function setPassword(string $password): void
+	public function setPassword(string $password)
 	{
 		$this->password = $password;
 	}
 
-	public function setRegisterDate(DateTime $registerDate): void
+	public function setRegisterDate(DateTime $registerDate)
 	{
 		$this->registerDate = $registerDate;
 	}	
@@ -70,5 +74,10 @@ class PetOwner
 			return new DateTime;
 
 		return $this->registerDate;
-	}					
+	}	
+
+	public function getNewPetOwner(): bool 
+	{
+		return is_null($this->id);
+	}				
 }

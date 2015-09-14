@@ -1,3 +1,6 @@
+VirtualPet
+<br>
+<br>
 <form method="POST" action="<?php echo URL; ?>register/save">
 	<fieldset>
 		<legend>Espécie do pet</legend>
