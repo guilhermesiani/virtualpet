@@ -1,7 +1,7 @@
 **Descrição**
 
 Bicho Virtual é um game online onde o usuário terá um animal virtual para cuidar e interagir.
-Os usuário poderão ver os bichos virtuais dos amigos e de outros participantes. Abaixo a lista de ações:
+Os usuários poderão ver os bichos virtuais dos amigos e de outros participantes. Abaixo a lista de ações:
 
 - Usuário poderá criar apenas um (1) bicho
 - Definir espécie do bicho (voador, marinho, terrestre)
