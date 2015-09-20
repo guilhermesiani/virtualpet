@@ -11,9 +11,3 @@ Os usuário poderão ver os bichos virtuais dos amigos e de outros participantes
 - Bicho envelhece automaticamente, com tempo definido pela espécie, origem.
 - Bicho será alimentado pelo usuário
 - Bicho receberá atenção do usuário
-
-Interação com outros usuários
-
-- Bicho poderá brincar com outro bicho de outro usuário (Sugestão)
-- Bicho poderá reproduzir com outro bicho (Sugestão)
-- Usuário poderá ver a cria gerada pela concepção do cruzamento com o bicho do outro usuário, mas não poderá interagir com o mesmo. Será salvo a imagem com aparência do mesmo apenas em sua conta. (Sugestão)
