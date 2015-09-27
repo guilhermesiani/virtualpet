@@ -1,7 +1,7 @@
 <?php
 
 require_once('simpletest/autorun.php');
-require_once('../libs/Password.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/libs/Password.php');
 
 use Libs\Password as Password;
 

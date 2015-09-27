@@ -1,12 +1,12 @@
 <?php
 
-require_once('../simpletest/autorun.php');
-require_once('../../libs/Pet/Pet.php');
-require_once('../../libs/Pet/AnimalKingdom/AnimalKingdom.php');
-require_once('../../libs/Pet/AnimalKingdom/MartianAnimalKingdom.php');
-require_once('../../libs/Pet/Specie/Flying.php');
-require_once('../../libs/Pet/MartianPet/MartianPet.php');
-require_once('../../libs/Pet/MartianPet/MartianFlyingPet.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/test/simpletest/autorun.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/libs/Pet/Pet.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/libs/Pet/AnimalKingdom/AnimalKingdom.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/libs/Pet/AnimalKingdom/MartianAnimalKingdom.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/libs/Pet/Specie/Flying.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/libs/Pet/MartianPet/MartianPet.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/libs/Pet/MartianPet/MartianFlyingPet.php');
 
 use Libs\Pet\MartianPet\MartianPet as MartianPet;
 use Libs\Pet\MartianPet\MartianFlyingPet as MartianFlyingPet;

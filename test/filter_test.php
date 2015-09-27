@@ -1,7 +1,7 @@
 <?php
 
 require_once('simpletest/autorun.php');
-require_once('../libs/filter.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/libs/filter.php');
 
 /**
 * 
