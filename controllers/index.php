@@ -3,8 +3,8 @@
 namespace Controllers;
 
 /**
-*  Index Controller
-*/
+ *  Index Controller
+ */
 class Index extends \Libs\Controller
 {
 	
