@@ -20,7 +20,7 @@ define('DB_HOST', 'localhost');
 /*
  * Database User
  */
-define('DB_USER', 'william');
+define('DB_USER', '');
 
 /*
  * Database Password
