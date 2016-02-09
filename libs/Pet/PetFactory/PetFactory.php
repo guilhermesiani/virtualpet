@@ -24,7 +24,7 @@ class PetFactory implements PetFactoryInterface
 		$petKindObject 	= "Libs\Pet\\".$this->planet."Pet\\".$this->planet.$this->kind."Pet";
 		$petObject 		= "Libs\Pet\\".$this->planet."Pet\\".$this->planet."Pet";
 
-		$pet = new $petObject(new $petKindObject);
+		$pet = new $petObject(new $petKindObject());
 
 	    return $pet;
 	}
