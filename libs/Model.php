@@ -12,10 +12,10 @@ class Model
 	function __construct()
 	{
 		$postgreSQLConnectorConfig = new PostgreSQLConnectorConfig(
-			'localhost',
-			'virtualpet',
-			'guilhermesiani',
-			''
+			DB_HOST,
+			DB_NAME,
+			DB_USER,
+			DB_PASSWORD
 		);
 
 		$this->db = (new Database($postgreSQLConnectorConfig))->getConnection();

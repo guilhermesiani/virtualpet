@@ -14,9 +14,9 @@ abstract class ConnectorConfig
 
 	function __construct(string $host, string $dbname, string $user, string $password)
 	{
-		$this->host = $host;
-		$this->dbname = $dbname;
-		$this->user = $user;
+		$this->host     = $host;
+		$this->dbname   = $dbname;
+		$this->user     = $user;
 		$this->password = $password;
 	}
 
